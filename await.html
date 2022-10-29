@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Async</title>
+</head>
+<body>
+    <script>
+    
+//promise<JSON Product>
+    function getProduct() {
+        const request = new Request("api/products.json", {
+            method: "GET"
+            });
+
+            const response = fetch(request);
+
+            return response.then((response) => response.json());
+        }
+
+
+    //promise<String>
+    function getProductNamePromise() {
+       return new Promise(function (resolve, reject) {
+           getProduct()
+           .then((product) => resolve(product.name))
+           .catch((error) => resolve("Product Not Found"));
+
+            return response.then((response) => response.json());
+        })
+    }
+
+    //async bukan promise manual seperti dia atas
+    async function getProductNameAsync() {
+       try {
+           const Product = await getProduct();
+            return product.name;
+        } catch (e) {
+            return"Product Not Found";
+        } finally { }
+    }
+
+    getProductNamePromise()
+        .then((productName) => console.info(productName));
+       
+    getProductNameAsync()
+        .then((productName) => console.info(productName));
+  
+</script>
+</body>
+</html>

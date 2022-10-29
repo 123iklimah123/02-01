@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar</title>
+</head>
+<body>
+    <h1>Pendaftaran santri Baru</h1> <!--https://webhook.site/07999061-eff3-47eb-aaa3-a72ee4e42f21-->
+    <form>
+    <label for="nama lengkap">Nama Lengkap:
+        <input type="text" id="namaLengkap" name="nama lengkap">
+    </label>
+    <br>
+    <label for="no telp">No telp:
+        <input type="no telp" id="noTelp" name="no telp">
+    </label>
+    <br>
+    <label for="email">Email:
+        <input type="email" id="email" name="email">
+    </label>
+    <br>
+    <label for="password">password:
+        <input type="password" id="password" name="password">
+    </label>
+    <br>
+    <label for="alamat">alamat:
+        <input type="alamat" id="alamat" name="alamat">
+    </label>
+    <br>
+    <label for="tanggal lahir">tanggal lahir:
+        <input type="date" id="tanggalLahir" name="tanggal lahir">
+    </label>
+    <br>
+    <label for="photo">photo:
+        <input type="file" id="photo" name="photo">
+        <br>
+    </label>
+    <input type="button" id="register" value="register">
+</form>
+<h1 id="putHere"></h1>
+<script>
+
+function doLogin() {
+    const ajax = new XMLHttpRequest(); // 1 karena turunan dari XMLHttpRequest
+    ajax.open("POST", "https://webhook.site/07999061-eff3-47eb-aaa3-a72ee4e42f21"); // tujuan kirim
+    ajax.onload = function () {// respon==untuk menangkap response, apakah data kita benar2 sudah sampai
+        const response =document.getElementById("putHere");
+        response.innerText = ajax.responseText;
+    }
+    const form = new FormData();// yang ingin dicapture
+    form.append("namaLengkap", document.getElementById("namaLengkap").value);
+    form.append("noTelp", document.getElementById("noTelp").value);
+    form.append("email", document.getElementById("email").value);
+    form.append("password", document.getElementById("password").value); 
+    form.append("alamat", document.getElementById("alamat").value);
+    form.append("tanggalLahir", document.getElementById("tanggalLahir").value);
+
+    // const files = document.getElementById("profile").files;
+    // const firstFile = files.item(0);
+    //form.append("profile", firstFile);
+     form.append("photo", document.getElementById("photo").files.item(0));
+
+     ajax.send(form);
+  }    
+
+document.getElementById("register").onclick = doLogin;
+</script>
+</body>
+</html>
